@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue生命周期</title>
+</head>
+<body>
+    <div id="test">
+        <button @click="destroyVM">destroy vm</button>
+        <p v-show="isShow">vue生命周期</p>
+
+        <p>{{isShow}}</p>
+        <p>{{isShow}}</p>
+        <p>{{isShow}}</p>
+        <p>{{isShow}}</p>
+    </div>
+</body>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#test',
+        data: {
+            isShow: true
+        },
+        //1.初始化阶段
+        beforeCreate(){
+            console.log('beforeCreate')
+        },
+
+        created(){
+            console.log('created')
+        },
+
+        beforeMounted(){
+            console.log('beforeMounted')
+        },
+
+        //常用：发送ajax请求，启动定时器等异步任务
+        mounted(){//初始化显示之后立即调用（1次)
+            console.log('mounted')
+            //=>定义的是匿名函数，没有自己的this对象，用的是外部的this对象，此处就是vm对象
+            //将返回值intervalId放入this对象中
+            this.intervalId = setInterval(() => {
+                console.log('-----------')
+                this.isShow = !this.isShow
+            }, 1000)
+        },
+
+        //2.更新阶段
+        beforeUpdate(){
+            console.log('beforeUpdate')
+        },
+
+        updated(){
+            console.log('updated')
+        },
+
+        //3.死亡阶段
+        //常用：收尾工作，如：清除定时器
+        beforeDestroy(){//死亡之前调用（1次）
+            console.log('beforeDestroy')
+            clearInterval(this.intervalId)
+        },
+
+        destroyed() {
+            console.log('destroyed')
+        },
+
+        methods: {
+            destroyVM(){
+                //销毁VM
+                this.$destroy()
+            }
+        }
+    })
+</script>
+</html>
