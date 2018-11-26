@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置指令</title>
+    <style>
+        /*属性选择器*/
+        [v-cloak] {
+            display: none;
+        }
+        [a] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!--指令属性在页面解析完后不会显示-->
+    <div id="test">
+        <p ref="content">hello</p>
+        <button @click="hint">提示</button>
+        <p>{{msg}}</p>
+        <p v-text="msg"></p>
+        <p v-cloak>{{msg}}</p>
+        <!--普通属性会显示-->
+        <p a>{{msg}}</p>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    alert('---')
+    new Vue({
+        el: '#test',
+        data: {
+            msg: 'jjjjjj'
+        },
+        methods: {
+            hint() {
+               alert(this.$refs.content.textContent)
+            }
+        }
+    })
+</script>
+</html>

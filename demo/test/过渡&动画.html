@@ -3,12 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>过渡和动画</title>
+    <style>
+        /*显示和隐藏的过渡效果*/
+        .xxx-enter-active, .xxx-leave-active{
+            transition: opacity 1s;
+        }
+        /*隐藏时的样式*/
+        .xxx-enter, .xxx-leave-to{
+            opacity: 0;
+        }
+
+        /*显示的过渡效果*/
+        .yyy-enter-active{
+            transition: all 1s
+        }
+        /*隐藏的过渡效果*/
+        .yyy-leave-active{
+            transition: all 3s
+        }
+        /*隐藏时的样式*/
+        .yyy-enter, .yyy-leave-to{
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+    </style>
 </head>
 <body>
-    <div id="test">
-        <button @click="isShow=!isShow">toggle</button>
-        <p v-show>hello</p>
+    <div id="test1">
+        <button @click="isShow=!isShow">toggle1</button>
+        <transition name="xxx">
+            <p v-show="isShow">hello</p>
+        </transition>
+    </div>
+    <div id="test2">
+        <button @click="isShow=!isShow">toggle2</button>
+        <transition name="yyy">
+            <p v-show="isShow">hello</p>
+        </transition>
     </div>
 
 </body>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#test1',
+        data: {
+            isShow: true
+        }
+    })
+    new Vue({
+        el: '#test2',
+        data: {
+            isShow: true
+        }
+    })
+</script>
 </html>
