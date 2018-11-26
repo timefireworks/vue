@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<script src="../js/vue.js"></script>
+
+<body>
+
+    <!--view-->
+    <div id="app">
+        {{name}} : <input type="text" v-model="name"/>
+    </div>
+
+    <div id="app2">
+        <span v-bind="message">fsadffa</span>
+    </div>
+
+</body>
+
+
+<script>
+    var vm = new Vue({
+        el:'#app', //element: 选择器
+        data:{ //数据（model）
+            name:"ssss"
+        }
+    });
+
+    var data = new Vue({
+       el:"#app2",
+       data:{
+           message:"cccc"
+       }
+    });
+</script>
+</html>

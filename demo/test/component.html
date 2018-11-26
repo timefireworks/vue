@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+</head>
+
+<script src="../js/vue.js"/>
+
+<body>
+    <div id="app">
+        <ol>
+            <todo-item v-for="todo in todos"></todo-item>
+        </ol>
+    </div>
+
+    <br/>
+    <br/>
+    <div id="app2">
+        <ol>
+            &lt;!&ndash; 创建一个 todo-li 组件的实例 并绑定组件的todo属性和key值,区分组件&ndash;&gt;
+            <todo-li v-for="todo in todos" v-bind:todo ='todo' v-bind:key="todo.id"></todo-li>
+        </ol>
+    </div>
+
+</body>
+
+<script>
+
+    Vue.component('todo-item', {
+        template:'<li>这是一个todo项</li>'
+    });
+
+
+    Vue.component('todo-li', {
+        //todo-li组件现在接受一个"prop",
+        // 类似于一个自定义属性
+        // 此 prop 名为todo，props里也可以定义多个prop。
+        props: ['todo'],
+        //双向绑定
+        template: '<li>{{todo.text}}</li>'
+    })
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            todos: [
+                {
+                    text: ''
+                },
+                {
+                    text: ''
+                },
+                {
+                    text: ''
+                }
+            ]
+        }
+    })
+
+    var app2 = new Vue({
+        el: "#app2",
+        data: {
+            todos: [{
+                text: 'Python3学习',id:0
+            },
+                {
+                    text: 'Spring-Boot学习',id:1
+                },
+                {
+                    text: 'Vue.js学习',id:2
+                }
+            ]
+        }
+    })
+</script>
+</html>
+<!--<html>
+
+<head>
+    <title>由组件组合而成的应用程序</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+<div id="app">
+    <ol>
+        &lt;!&ndash; 创建一个 todo-item 组件的实例 其实就是一个li标签，我们发现内容一样 &ndash;&gt;
+        <todo-item v-for="todo in todos"></todo-item>
+    </ol>
+</div>
+<br/>
+<br/>
+<div id="app2">
+    <ol>
+        &lt;!&ndash; 创建一个 todo-li 组件的实例 并绑定组件的todo属性和key值,区分组件&ndash;&gt;
+        <todo-li v-for="todo in todos" v-bind:todo ='todo' v-bind:key="todo.id"></todo-li>
+    </ol>
+</div>
+</body>
+<script>
+    // 定义一个被命名为 todo-item 的新组件 组件的数据模板，渲染的内容清一色的一样
+    Vue.component('todo-item', {
+        template: '<li>这是一个 todo 项</li>'
+    })
+
+    Vue.component('todo-li', {
+        // todo-li 组件现在接受一个 "prop"，
+        // 类似于一个自定义属性。
+        // 此 prop 名为 todo，props里也可以定义多个prop。
+        props: ['todo'],
+        //双向绑定
+        template: '<li>{{todo.text}}</li>'
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            todos: [{
+                text: ''
+            },
+                {
+                    text: ''
+                },
+                {
+                    text: ''
+                }
+            ]
+        }
+    })
+
+    var app2 = new Vue({
+        el: "#app2",
+        data: {
+            todos: [{
+                text: 'Python3学习',id:0
+            },
+                {
+                    text: 'Spring-Boot学习',id:1
+                },
+                {
+                    text: 'Vue.js学习',id:2
+                }
+            ]
+        }
+    })
+</script>
+
+</html>-->
+

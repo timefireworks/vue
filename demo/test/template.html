@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template</title>
+</head>
+
+<!--
+    1.模板：动态的html页面
+    包含了一些JS语法代码：双大括号表达式；指令（以v-开头的自定义标签属性）
+-->
+
+<body>
+    <div id="app">
+        <h2>1.双大括号表达式</h2>
+        <p>{{ message }}</p>    <!--textContent属性-->
+        <p>{{ message.toUpperCase() }}</p>
+        <p v-text="message"></p>    <!--textContent属性-->
+        <p v-html="message"></p>    <!--innerHtml属性-->
+
+        <h2>2.指令一：强制数据绑定</h2>
+        <img src="imgUrl"/>
+        <img v-bind:src="imgUrl">
+        <img :src="imgUrl">
+
+        <h2>3.指令二：绑定事件监听</h2>
+        <button v-on:click="test">test1</button>
+        <button @click="test">test1</button>
+        <button @click="test2(message)">test2</button>
+    </div>
+</body>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message: '<a href="http://www.baidu.com">百度</a>',
+            imgUrl: 'https://cn.vuejs.org/images/logo.png'
+        },
+        methods:{
+            test(){
+                alert("hehe")
+            },
+            test2(content){
+                alert(content)
+            }
+        }
+    })
+</script>
+
+</html>
