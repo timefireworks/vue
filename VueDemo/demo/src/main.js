@@ -1,14 +1,8 @@
-/*
-入口JS: 创建Vue实例
- */
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 
 new Vue({
-  //el看index.html
   el: '#app',
-  components: {
-    App
-  },
+  components: {App},
   template: '<App/>'
 })
